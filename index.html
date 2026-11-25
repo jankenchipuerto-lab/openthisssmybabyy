@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff5f4">
+  <title>For my babyy — Happy 6th Monthsarry</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+      color: #543c4a;
+      background: #fff5f4;
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-width: 320px;
+      min-height: 100vh;
+      min-height: 100svh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      overflow-x: hidden;
+      background:
+        radial-gradient(ellipse at 18% 18%, #ffe1e5 0, transparent 34%),
+        radial-gradient(ellipse at 83% 82%, #f5dcec 0, transparent 35%),
+        #fff8f5;
+    }
+
+    .page {
+      width: min(100% - 32px, 680px);
+      padding: 34px 0 42px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      color: #b66f89;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      color: #75475e;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2rem, 8vw, 3.5rem);
+      font-weight: 600;
+      line-height: 1.1;
+    }
+
+    .hint {
+      margin: 12px 0 0;
+      color: #876a79;
+      font-size: clamp(0.95rem, 3vw, 1.08rem);
+    }
+
+    .stage {
+      position: relative;
+      width: min(100%, 520px);
+      height: clamp(510px, 75vh, 650px);
+      min-height: 510px;
+      margin: 22px auto 0;
+      perspective: 1100px;
+    }
+
+    .letter {
+      position: absolute;
+      z-index: 1;
+      right: 4%;
+      bottom: 18px;
+      left: 4%;
+      height: clamp(300px, 55vh, 440px);
+      padding: clamp(20px, 5vw, 32px);
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      border: 1px solid #f0d7dc;
+      border-radius: 14px;
+      background: #fffdf9;
+      box-shadow: 0 12px 35px #784c5b20;
+      text-align: left;
+      opacity: 0;
+      transform: translateY(28px) scale(0.96);
+      transition:
+        transform 700ms cubic-bezier(0.2, 0.8, 0.2, 1),
+        opacity 350ms ease,
+        bottom 700ms cubic-bezier(0.2, 0.8, 0.2, 1);
+      scrollbar-color: #dbabb9 #fff2f1;
+      scrollbar-width: thin;
+    }
+
+    .letter h2 {
+      margin: 0 0 18px;
+      color: #a85877;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.35rem, 5vw, 1.8rem);
+      line-height: 1.25;
+      text-align: center;
+    }
+
+    .letter p {
+      margin: 0 0 1em;
+      color: #51434a;
+      font-size: clamp(1rem, 3.6vw, 1.1rem);
+      line-height: 1.8;
+      overflow-wrap: anywhere;
+    }
+
+    .letter .signoff {
+      margin-top: 1.5em;
+      color: #a85877;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .envelope-button {
+      position: absolute;
+      z-index: 3;
+      right: 0;
+      bottom: 70px;
+      left: 0;
+      width: min(90%, 430px);
+      height: 230px;
+      margin: auto;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .envelope-button:focus-visible,
+    .toggle-button:focus-visible {
+      outline: 3px solid #a85877;
+      outline-offset: 6px;
+    }
+
+    .envelope {
+      position: absolute;
+      inset: 34px 0 0;
+      overflow: hidden;
+      border-radius: 8px 8px 14px 14px;
+      background: #eebac5;
+      box-shadow: 0 18px 34px #71435526;
+    }
+
+    .envelope-back {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(145deg, #f3cbd0, #e8aab8);
+    }
+
+    .envelope-front {
+      position: absolute;
+      z-index: 2;
+      inset: 0;
+      background: linear-gradient(35deg, #df91a5 0 49.7%, transparent 50%),
+        linear-gradient(-35deg, #e7a3b2 0 49.7%, transparent 50%);
+      transition: opacity 450ms ease;
+    }
+
+    .flap {
+      position: absolute;
+      z-index: 4;
+      top: 34px;
+      left: 0;
+      width: 100%;
+      height: 116px;
+      transform: rotateX(0deg);
+      transform-origin: top center;
+      transition: transform 650ms ease, z-index 0s 325ms;
+      backface-visibility: hidden;
+    }
+
+    .flap::before {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(145deg, #f8d9da, #eeb8c2);
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      content: "";
+    }
+
+    .heart {
+      position: absolute;
+      z-index: 3;
+      top: 103px;
+      left: 50%;
+      color: #fff8f4;
+      font-size: 2.2rem;
+      transform: translateX(-50%);
+      transition: opacity 250ms ease;
+      text-shadow: 0 2px 6px #9f5d713d;
+    }
+
+    .opened .letter {
+      z-index: 4;
+      bottom: 130px;
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      transition-delay: 250ms;
+    }
+
+    .opened .flap {
+      z-index: 1;
+      transform: rotateX(180deg);
+    }
+
+    .opened .envelope-front {
+      opacity: 0.82;
+    }
+
+    .opened .heart {
+      opacity: 0;
+    }
+
+    .toggle-button {
+      position: absolute;
+      z-index: 5;
+      right: 50%;
+      bottom: 24px;
+      min-height: 46px;
+      padding: 11px 22px;
+      border: 0;
+      border-radius: 999px;
+      background: #a85877;
+      box-shadow: 0 6px 16px #a8587730;
+      color: white;
+      font: inherit;
+      font-size: 0.98rem;
+      font-weight: 700;
+      cursor: pointer;
+      transform: translateX(50%);
+    }
+
+    .toggle-button:hover {
+      background: #914765;
+    }
+
+    @media (max-width: 480px) {
+      .page {
+        width: min(100% - 24px, 680px);
+        padding-top: 26px;
+      }
+
+      .stage {
+        height: 570px;
+        margin-top: 14px;
+      }
+
+      .letter {
+        right: 1%;
+        left: 1%;
+        height: 370px;
+        padding: 20px 18px;
+      }
+
+      .opened .letter {
+        bottom: 132px;
+      }
+
+      .envelope-button {
+        bottom: 68px;
+        height: 205px;
+        width: 94%;
+      }
+
+      .flap {
+        height: 104px;
+      }
+
+      .heart {
+        top: 96px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <audio id="backgroundMusic" loop preload="auto">
+    <source src="assets/Panaginip%20-%20nicole.mp4" type="audio/mp4">
+  </audio>
+
+  <main class="page">
+    <p class="eyebrow">HAIII BEBIII!!</p>
+    <h1>Happy 6th Monthsarry!</h1>
+    <p class="hint" id="hint">open the letter haaaa 💌</p>
+
+    <section class="stage" id="stage" aria-label="Anniversary letter">
+      <article class="letter" id="letter" aria-label="Your anniversary message" tabindex="0">
+        <h2>Happiestt 6th monthsarry babyy!! :))</h2>
+        <p>I knowww poo na nasasaktan kita pero, I just want you to know na hindi ibig-sabihin non na ayaw kona okay? we are not perfect we know that, sobrang dami nanating napagdaanan mahal na mahal kita babyyyy ano man mangyare, minsan ma tataka bakit ako nawawala kapag need mo ng sagot sa tanong mo, ganon din ako parehas lang tayo nag hahanap ng kasagutan, masakit yung process nayon pero alam na alam ko kakayanin natin sana nga po matiis mo yung gantong ugali ko, I'm really sorry po sometimes nagiging bad me ha</p>
+        <p>I know nagalit me kanina and hindi na nag reply sayo, kase naman imagine po yung baby mo nag rerepost ng ganon sa tiktok tas ikaw makakita, wala namang mali sa video pero sa pov ko ang mali nya lalo na yung mga comments, captions, and sounds sa nakita konayon, baliktarin kaya po natin yung situation bebii ganon ako kunyare? diba iba din mararamadaman mopo and mabigat sa pakiramdam yon.</p>
+        <p>Ang sakin lang naman po is bakit need mo mag repost ng ganon kahit sinabi sayo na ng bf mo na gusto nya sya lang diba?, masakit para sakin namalaman na ganon lang maririnig kong sagot sayo kanina kase hindi molang na find out bakit ako nagiging ganon, pero sana next time mas matuto napo tayo kase masakit din po para sakin yung nangyayare and nakaka drain po pero andito lang ako bebii hangganggg sa huliii:> hanggang sa ma drianed ka and mawalan kana ng gana sakin:> pero wag kapo mag taka na yung baby mo na mahal na mahallllllllllll kaaa is napapagod din hehe,</p>
+        <p>yun lang babyy kooo hapiesstttt 6th monthsarry sayoo myy babyy and I'm sorryyy po sa lahat ng nagawa kong bad sayo and alam kopo masakit yon, lahat laht sana po mapatawad mopooo akoo hehee,</p>
+        <p class="signoff">I LOOVVVVVEEEEEEEEEEEEEEEEE YOUUUUUUUUUUUUUUU SOOOOO SOOOOOOOOO MUCHHHYYYYYYYYYYYY MYYYYY BABYYYYYY LOVEEEE LOVEEEYY KOOO&lt;3333 MWAAAAAAAAAAAAAAAAAAAAAAHHHHHHHHHHHHHHH MWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH&lt;333333</p>
+      </article>
+
+      <button class="envelope-button" id="envelopeButton" type="button" aria-label="Open the anniversary envelope" aria-expanded="false" aria-controls="letter">
+        <span class="envelope" aria-hidden="true">
+          <span class="envelope-back"></span>
+          <span class="envelope-front"></span>
+        </span>
+        <span class="flap" aria-hidden="true"></span>
+        <span class="heart" aria-hidden="true">♥</span>
+      </button>
+
+      <button class="toggle-button" id="toggleButton" type="button" aria-controls="letter">Open my letter</button>
+    </section>
+  </main>
+
+  <script>
+    const stage = document.querySelector("#stage");
+    const envelopeButton = document.querySelector("#envelopeButton");
+    const toggleButton = document.querySelector("#toggleButton");
+    const hint = document.querySelector("#hint");
+    const backgroundMusic = document.querySelector("#backgroundMusic");
+
+    async function startBackgroundMusic() {
+      if (!backgroundMusic.paused) {
+        return;
+      }
+
+      try {
+        await backgroundMusic.play();
+        hint.textContent = "♫ Our song is playing 💗";
+      } catch (error) {
+        console.error("Could not play the background music:", error);
+        hint.textContent = "Tap again to start the music 💗";
+      }
+    }
+
+    function setOpen(isOpen) {
+      stage.classList.toggle("opened", isOpen);
+      envelopeButton.setAttribute("aria-expanded", String(isOpen));
+      envelopeButton.setAttribute(
+        "aria-label",
+        isOpen ? "Close the anniversary envelope" : "Open the anniversary envelope"
+      );
+      toggleButton.textContent = isOpen ? "Close letter" : "Open my letter";
+      hint.textContent = isOpen
+        ? "💗"
+        : "Tap the envelope to open your letter 💌";
+    }
+
+    envelopeButton.addEventListener("click", () => {
+      startBackgroundMusic();
+      setOpen(!stage.classList.contains("opened"));
+    });
+
+    toggleButton.addEventListener("click", () => {
+      startBackgroundMusic();
+      setOpen(!stage.classList.contains("opened"));
+    });
+  </script>
+</body>
+</html>
